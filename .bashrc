@@ -123,4 +123,5 @@ if ! [ -f ~/.vimrc ]; then
   echo :set hlsearch >> .vimrc
   echo :set incsearch >> .vimrc
   echo :set showmatch >> .vimrc
+  echo :set mouse=a >> .vimrc
 fi
