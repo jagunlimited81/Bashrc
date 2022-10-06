@@ -15,30 +15,46 @@ function install_bashrc() {
 function install_programs() {
     # Update System and Repos
     sudo apt update -y && sudo apt upgrade -y
+    sudo apt install wget -y
+
+    sudo apt install unattended-upgrades -y
+    
     # Install Editors
     sudo apt install vim -y
+    sudo apt install tmux -y
 
-    # install diagnostic tools
+    sudo apt install git -y
+
+    # Install diagnostic tools
     sudo apt install htop -y
     sudo apt install neofetch -y
+
+    # Install networking tools
     sudo apt install net-tools -y
+    sudo apt install nmap -y
 }
 
 function install_interpreters() {
+    # compilers
+    sudo apt install build-essential
+
     # python
-    sudo apt install python3 pip3 -y
+    sudo apt install python3 -y
 
     # Node.js nvm
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
 }
-
+function cleanup() {
+    source ~/.bashrc
+}
 # Full install
 if [ $choice -eq "1" ]; then
     echo "Full install"
     install_bashrc
     install_programs
     install_interpreters
+    cleanup
 fi
 # Custom Linux Install
 if [ $choice -eq "2" ]; then
@@ -48,8 +64,10 @@ fi
 if [ $choice -eq "3" ]; then
     echo ".bashrc install"
     install_bashrc
+    cleanup
 fi
 # Quit
 if [ $choice -eq "4" ]; then
     echo "Quitting..."
+    cleanup
 fi
