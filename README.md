@@ -2,8 +2,8 @@
 Various .bashrc files for different operating systems
 ## Install
 ```
-curl https://raw.githubusercontent.com/jagunlimited81/Bashrc/main/install.sh -o -f
-./install.sh
+curl https://raw.githubusercontent.com/jagunlimited81/Bashrc/main/install.sh -o ~/.install.sh -f
+~/install.sh
 ```
 
 ## only bashrc
