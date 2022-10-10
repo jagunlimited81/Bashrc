@@ -111,17 +111,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# Check for .vimrc and set it up with line numbers and coloring
-if ! [ -f ~/.vimrc ]; then
-  echo :set number > .vimrc
-  echo :colorscheme slate >> .vimrc
-  echo :syntax on >> .vimrc
-  echo :set cursorline >> .vimrc
-  echo :set cursorcolumn >> .vimrc
-  echo :set wildmenu >> .vimrc
-  echo :set hlsearch >> .vimrc
-  echo :set incsearch >> .vimrc
-  echo :set showmatch >> .vimrc
-  echo :set mouse=a >> .vimrc
-fi
