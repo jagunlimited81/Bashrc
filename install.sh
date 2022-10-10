@@ -27,11 +27,16 @@ function install_programs() {
 
     # Install diagnostic tools
     sudo apt install htop -y
+    sudo apt install iotop -y
+    sudo apt install nmon -y
     sudo apt install neofetch -y
+    sudo apt install sysbench -y
 
     # Install networking tools
     sudo apt install net-tools -y
     sudo apt install nmap -y
+    sudo apt install iperf3 -y
+    sudo apt install speedtest-cli -y
 }
 
 function install_interpreters() {
