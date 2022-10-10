@@ -1,0 +1,10 @@
+:set number
+:colorscheme slate
+:syntax on
+:set cursorline
+:set cursorcolumn
+:set wildmenu
+:set hlsearch
+:set incsearch
+:set showmatch
+:set mouse=a
