@@ -10,6 +10,8 @@ read choice
 function install_bashrc() {
     BASHRC_URL="https://raw.githubusercontent.com/jagunlimited81/Bashrc/main/.bashrc"
     curl $BASHRC_URL -o ~/.bashrc -f
+    VIMRC_URL="https://raw.githubusercontent.com/jagunlimited81/Bashrc/main/.vimrc"
+    curl $VIMRC -o ~/.vimrc -f
 }
 
 function install_programs() {
