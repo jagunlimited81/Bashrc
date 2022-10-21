@@ -43,7 +43,7 @@ function install_programs() {
 
 function install_interpreters() {
     # compilers
-    sudo apt install build-essential
+    sudo apt install build-essential -y
 
     # python
     sudo apt install python3 -y
