@@ -40,6 +40,9 @@ function install_programs() {
     sudo apt install nmap -y
     sudo apt install iperf3 -y
     sudo apt install speedtest-cli -y
+    
+    # Install storage tools
+    sudo apt install cifs-utils
 }
 
 function install_interpreters() {
