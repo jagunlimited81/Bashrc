@@ -42,7 +42,7 @@ function install_programs() {
     sudo apt install speedtest-cli -y
     
     # Install storage tools
-    sudo apt install cifs-utils
+    sudo apt install nfs-common -y
 }
 
 function install_interpreters() {
