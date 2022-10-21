@@ -12,6 +12,7 @@ function install_bashrc() {
     curl $BASHRC_URL -o ~/.bashrc -f
     VIMRC_URL="https://raw.githubusercontent.com/jagunlimited81/Bashrc/main/.vimrc"
     curl $VIMRC -o ~/.vimrc -f
+    source ~/.bashrc
 }
 
 function install_programs() {
