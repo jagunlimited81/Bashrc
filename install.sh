@@ -1,5 +1,5 @@
-#!/bin/bash
-echo "Welcome to jagunlimited81's Linux install script"
+#!/usr/bin/env bash
+echo "\n\nWelcome to jagunlimited81's Linux install script"
 echo "select an option"
 echo -e "\t 1. Full Linux Dev Install"
 echo -e "\t 2. Custom Linux install"
@@ -56,12 +56,16 @@ function install_interpreters() {
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
 }
+function disable_needrestart() {
+    sudo NEEDRESTART_MODE=a apt-get dist-upgrade --yes
+}
 function cleanup() {
     source ~/.bashrc
 }
 # Full install
 if [ $choice -eq "1" ]; then
     echo "Full install"
+    disable_needrestart
     install_bashrc
     install_programs
     install_interpreters
@@ -70,6 +74,7 @@ fi
 # Custom Linux Install
 if [ $choice -eq "2" ]; then
     echo "Custom install"
+    disable_needrestart
 fi
 # Install .bashrc
 if [ $choice -eq "3" ]; then
