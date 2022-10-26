@@ -80,7 +80,8 @@ function disable_needrestart() {
     sed s/\#\$nrconf{restart}\ =\ \'i\'\;/\$nrconf{restart}\ =\ \'a\'\;/ /etc/needrestart/needrestart.conf | sudo tee /etc/needrestart/needrestart.conf
 }
 function cleanup() {
-    source ~/.bashrc
+    echo "It's a good idea to reboot your instance, but it is not required."
+    export BASH_ENV=“$HOME/.bashrc”
 }
 # Full install
 if [ $choice -eq "1" ]; then
