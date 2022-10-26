@@ -57,7 +57,7 @@ function install_interpreters() {
 
 }
 function disable_needrestart() {
-    sudo NEEDRESTART_MODE=a apt-get dist-upgrade --yes
+    sed s/\#\$nrconf{restart}\ =\ \'i\'\;/\$nrconf{restart}\ =\ \'a\'\;/ /etc/needrestart/needrestart.conf | sudo tee /etc/needrestart/needrestart.conf
 }
 function cleanup() {
     source ~/.bashrc
