@@ -71,10 +71,10 @@ function install_docker() {
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
   
   # update apt package index
-  sudo apt-get update
+  sudo apt-get update -y
   
   # install docker
-  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 }
 function disable_needrestart() {
     sed s/\#\$nrconf{restart}\ =\ \'i\'\;/\$nrconf{restart}\ =\ \'a\'\;/ /etc/needrestart/needrestart.conf | sudo tee /etc/needrestart/needrestart.conf
