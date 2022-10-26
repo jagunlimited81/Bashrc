@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 echo "\n\nWelcome to jagunlimited81's Linux install script"
 echo "select an option"
-echo -e "\t 1. Full Linux Dev Install"
-echo -e "\t 2. Custom Linux install"
-echo -e "\t 3. Install .bashrc"
+echo -e "\t 1. Install everything"
+echo -e "\t 2. Docker + essential + bashrc"
+echo -e "\t 3. Install .bashrc only"
 echo -e "\t 4. Quit"
 read choice
 
@@ -56,6 +56,26 @@ function install_interpreters() {
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
 }
+
+function install_docker() {
+    # Update the apt package index and install packages to allow apt to use a repository over HTTPS:
+    sudo apt install ca-certificates -y
+    sudo apt install gnupg -y
+    sudo apt install lsb-release -y
+    
+    # Add Docker’s official GPG key:
+    sudo mkdir -p /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+    # Use the following command to set up the repository:
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  
+  # update apt package index
+  sudo apt-get update
+  
+  # install docker
+  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+}
 function disable_needrestart() {
     sed s/\#\$nrconf{restart}\ =\ \'i\'\;/\$nrconf{restart}\ =\ \'a\'\;/ /etc/needrestart/needrestart.conf | sudo tee /etc/needrestart/needrestart.conf
 }
@@ -68,6 +88,7 @@ if [ $choice -eq "1" ]; then
     disable_needrestart
     install_bashrc
     install_programs
+    install_docker
     install_interpreters
     cleanup
 fi
@@ -75,11 +96,16 @@ fi
 if [ $choice -eq "2" ]; then
     echo "Custom install"
     disable_needrestart
+    install_bashrc
+    install_programs
+    install_docker
+    cleanup
 fi
 # Install .bashrc
 if [ $choice -eq "3" ]; then
     echo ".bashrc install"
     install_bashrc
+    
     cleanup
 fi
 # Quit
