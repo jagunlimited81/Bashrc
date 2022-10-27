@@ -75,8 +75,13 @@ function install_docker() {
   
   # install docker
   sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+  
+  # add user to docker group
+  sudo groupadd docker
+  sudo usermod -aG docker $USER
+  newgrp docker
 }
-function disable_needrestart() {
+function automatic_needrestart() {
     sed s/\#\$nrconf{restart}\ =\ \'i\'\;/\$nrconf{restart}\ =\ \'a\'\;/ /etc/needrestart/needrestart.conf | sudo tee /etc/needrestart/needrestart.conf
 }
 function cleanup() {
@@ -86,7 +91,7 @@ function cleanup() {
 # Full install
 if [ $choice -eq "1" ]; then
     echo "Full install"
-    disable_needrestart
+    automatic_needrestart
     install_bashrc
     install_programs
     install_docker
@@ -96,7 +101,7 @@ fi
 # Custom Linux Install
 if [ $choice -eq "2" ]; then
     echo "Custom install"
-    disable_needrestart
+    automatic_needrestart
     install_bashrc
     install_programs
     install_docker
