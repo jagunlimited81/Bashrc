@@ -41,6 +41,7 @@ function install_programs() {
     sudo apt install iperf3 -y
     sudo apt install speedtest-cli -y
     sudo apt install bmon -y
+    sudo apt install traceroute -y
     
     # Install storage tools
     sudo apt install nfs-common -y
