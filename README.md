@@ -6,8 +6,9 @@ curl https://raw.githubusercontent.com/jagunlimited81/Bashrc/main/install.sh -o 
 ```
 # Setup Passwordless SSH
 ## On Windows
-### Generate a key pair
+### 1. Generate a key pair
 ```ssh-keygen -t rsa```
-### Copy SSH key to Remote Linux Machine
+### 2. Copy SSH key to Remote Linux Machine
 ```type $env:USERPROFILE\.ssh\id_rsa.pub | ssh {IP-ADDRESS-OR-FQDN} "cat >> .ssh/authorized_keys"```
-### Test passwordless SSH
+### 3. Test passwordless SSH
+```ssh user@IP-OR-FQDN```
