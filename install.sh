@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 echo "\n\nWelcome to jagunlimited81's Linux install script"
-echo "select an option"
-echo -e "\t 1. Install everything"
-echo -e "\t 2. Docker + essential + bashrc"
-echo -e "\t 3. Install .bashrc only"
-echo -e "\t 4. Quit"
+echo "Select an option:"
+echo -e "\t 1. Install Docker + essential + interpreters + bashrc"
+echo -e "\t 2. Install Docker + essential + bashrc"
+echo -e "\t 3. Install Docker + essential"
+echo -e "\t 4. Install essential + bashrc"
+echo -e "\t 5. Install essential"
+echo -e "\t 6. Install .bashrc"
+echo -e "\t 7. Quit"
 read choice
 
 function install_bashrc() {
@@ -15,7 +18,7 @@ function install_bashrc() {
     source ~/.bashrc
 }
 
-function install_programs() {
+function install_essential() {
     # Update System and Repos
     sudo apt update -y && sudo apt upgrade -y
     sudo apt install wget -y
@@ -56,7 +59,6 @@ function install_interpreters() {
 
     # Node.js nvm
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-
 }
 
 function install_docker() {
@@ -90,34 +92,52 @@ function cleanup() {
     echo "\nIt's a good idea to reboot your instance, but it is not required."
     exec bash
 }
-# Full install
+# 1. Install Docker + essential + interpreters + bashrc
 if [ $choice -eq "1" ]; then
-    echo "Full install"
     automatic_needrestart
-    install_bashrc
-    install_programs
-    install_docker
+    install_essential
     install_interpreters
+    install_docker
+    install_bashrc
     cleanup
 fi
-# Custom Linux Install
+# 2. Install Docker + essential + bashrc
 if [ $choice -eq "2" ]; then
-    echo "Custom install"
+    automatic_needrestart
+    install_essential
+    install_docker
+    install_bashrc
+    cleanup
+fi
+# 3. Install Docker + essential
+if [ $choice -eq "3" ]; then
+    automatic_needrestart
+    install_essential
+    install_interpreters
+    install_docker
+    install_bashrc
+    cleanup
+fi
+# 4 Install essential + bashrc
+if [ $choice -eq "4" ]; then
+    automatic_needrestart
+    install_essential
+    install_bashrc
+    cleanup
+fi
+# 5. Install essential
+if [ $choice -eq "5" ]; then
+    automatic_needrestart
+    install_essential
+    cleanup
+fi
+# 6. Install bashrc"
+if [ $choice -eq "6" ]; then
     automatic_needrestart
     install_bashrc
-    install_programs
-    install_docker
     cleanup
 fi
-# Install .bashrc
-if [ $choice -eq "3" ]; then
-    echo ".bashrc install"
-    install_bashrc
-    
-    cleanup
-fi
-# Quit
-if [ $choice -eq "4" ]; then
-    echo "Quitting..."
+# 7. Quit"
+if [ $choice -eq "7" ]; then
     cleanup
 fi
