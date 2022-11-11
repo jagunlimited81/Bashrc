@@ -33,6 +33,7 @@ function install_essential() {
 
     # Install diagnostic tools
     sudo apt install htop -y
+    sudo apt install glances -y
     sudo apt install iotop -y
     sudo apt install nmon -y
     sudo apt install neofetch -y
