@@ -91,7 +91,6 @@ function automatic_needrestart() {
 }
 function cleanup() {
     echo "\nIt's a good idea to reboot your instance, but it is not required."
-    exec bash
 }
 # 1. Install Docker + essential + interpreters + bashrc
 if [ $choice -eq "1" ]; then
