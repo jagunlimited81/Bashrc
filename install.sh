@@ -15,7 +15,6 @@ function install_bashrc() {
     curl $BASHRC_URL -o ~/.bashrc -f
     VIMRC_URL="https://raw.githubusercontent.com/jagunlimited81/Bashrc/main/.vimrc"
     curl $VIMRC -o ~/.vimrc -f
-    source ~/.bashrc
 }
 
 function install_essential() {
@@ -113,9 +112,7 @@ fi
 if [ $choice -eq "3" ]; then
     automatic_needrestart
     install_essential
-    install_interpreters
     install_docker
-    install_bashrc
     cleanup
 fi
 # 4 Install essential + bashrc
